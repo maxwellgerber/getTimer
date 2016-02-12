@@ -1,2 +1,2 @@
 VERSION = '0.1.0'
-from .main import *
+from .resources.main import getUserDate, getUserTime, getUserDateTime

@@ -21,7 +21,7 @@ extras = {
 setup(
     name='getTimer',
     version=VERSION,
-    packages=['getTimer'],
+    packages=['getTimer', 'getTimer.resources'],
     url='https://github.com/maxwellgerber/getTimer',
     license='MIT',
     author='Maxwell Gerber',

@@ -49,7 +49,7 @@ class date(datetime.date):
             year -= 1
         return date(year, month, day)
 
-def alterDigitDay(cursor, day, amount):
+def _alterDigitDay(cursor, day, amount):
     try:
         if(cursor == 0):
             return day.replace(year = day.year + 1000 * amount)
@@ -136,9 +136,9 @@ def runDay(scr, rollover, topString, bottomString, day = None):
             if(cursor == 4 or cursor == 7):
                 cursor -= 1
         elif(c == curses.KEY_UP):
-            day = alterDigitDay(cursor, day, 1)
+            day = _alterDigitDay(cursor, day, 1)
         elif(c == curses.KEY_DOWN):
-            day = alterDigitDay(cursor, day, -1)
+            day = _alterDigitDay(cursor, day, -1)
         else:
             try:
                 i = int(c) - 48
