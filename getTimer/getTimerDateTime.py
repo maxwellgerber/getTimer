@@ -1,8 +1,8 @@
 import curses
 import datetime
 
-from pytimer_date import *
-from pytimer_time import *
+from .getTimerDate import *
+from .getTimerTime import *
 
 def displayDateTime(scr, day, time, cursor, topString, bottomString):
     string = day.isoformat() + " " + time.isoformat()
