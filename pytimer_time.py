@@ -24,11 +24,11 @@ class time(datetime.time):
             hour += 1
         if(minute < 0):
             minute = 59
-            homr -= 1
+            hour -= 1
 
         return time(hour, minute, second)
 
-def alterDigit(cursor, t, amount):
+def alterDigitTime(cursor, t, amount):
     try:
         if(cursor == 0):
             return t.replace(hour = t.hour + 10 * amount)
@@ -45,7 +45,7 @@ def alterDigit(cursor, t, amount):
     except ValueError:
         return t
 
-def updateDigit(cursor, t, amount):
+def updateDigitTime(cursor, t, amount):
     try:
         if(cursor == 0):
             newHour = t.hour % 10 + 10 * amount
@@ -68,7 +68,6 @@ def updateDigit(cursor, t, amount):
     except ValueError:
         return t
 
-
 def displayTime(scr, time, cursor, topString, bottomString):
     string = time.isoformat()
     max_y , max_x = scr.getmaxyx()
@@ -86,7 +85,7 @@ def runTime(scr, rollover, topString, bottomString, t = None):
         if(t == None):
             t = time()
         else:
-            t = t(t.hour, t.minute, t.second)
+            t = time(t.hour, t.minute, t.second)
     else:
         if(t == None):
             t = datetime.time()
@@ -105,15 +104,14 @@ def runTime(scr, rollover, topString, bottomString, t = None):
             if(cursor == 2 or cursor == 5):
                 cursor -= 1
         elif(c == curses.KEY_UP):
-            t = alterDigit(cursor, t, 1)
+            t = alterDigitTime(cursor, t, 1)
         elif(c == curses.KEY_DOWN):
-            t = alterDigit(cursor, t, -1)
+            t = alterDigitTime(cursor, t, -1)
         else:
             try:
                 i = int(c) - 48
                 if(i >= 0 and i < 10):
-                    t = updateDigit(cursor, t, i)
+                    t = updateDigitTime(cursor, t, i)
             except ValueError:
                 pass
     return t
-

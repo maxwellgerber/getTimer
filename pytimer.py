@@ -4,7 +4,7 @@ import traceback
 
 from pytimer_date import runDay
 from pytimer_time import runTime
-# from pytimer_dateTime import runDateTime
+from pytimer_dateTime import runDateTime
 
 def startWindow():
     stdscr = curses.initscr()
@@ -48,11 +48,11 @@ def getUserTime(time = None, rollover = False, topString = "Input your Time", bo
     except:
         cleanup()
 
-# def getUserDateTime(dt = None, rollover = False, topString = "Input your Date", bottomString = "Press Enter when done"):
-#     try:
-#         scr = startWindow()
-#         d = runDateTime(scr, rollover, topString, bottomString, dt)
-#         stopWindow(scr)
-#         return d
-#     except:
-#         cleanup()
+def getUserDateTime(dt = None, rollover = False, topString = "Input your Timestamp", bottomString = "Press Enter when done"):
+    try:
+        scr = startWindow()
+        d = runDateTime(scr, rollover, topString, bottomString, dt)
+        stopWindow(scr)
+        return d
+    except:
+        cleanup()
