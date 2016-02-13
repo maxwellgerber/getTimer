@@ -28,6 +28,7 @@ class time(datetime.time):
 
         return time(hour, minute, second)
 
+
 def alterDigitTime(cursor, t, amount):
     try:
         if(cursor == 0):

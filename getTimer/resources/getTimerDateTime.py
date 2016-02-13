@@ -44,12 +44,12 @@ def runDateTime(scr, rollover, topString, bottomString, dt = None):
                 cursor -= 1
         elif(c == curses.KEY_UP):
             if(cursor < 10):
-                d = _alterDigitDay(cursor, d, 1)
+                d = alterDigitDay(cursor, d, 1)
             else:
                 t = alterDigitTime(cursor - 11, t, 1)
         elif(c == curses.KEY_DOWN):
             if(cursor < 10):
-                d = _alterDigitDay(cursor, d, -1)
+                d = alterDigitDay(cursor, d, -1)
             else:
                 t = alterDigitTime(cursor - 11, t, -1)
         else:

@@ -50,7 +50,7 @@ def getUserTime(start = None, rollover = False, topString = "Input your Time", b
     except:
         _cleanup()
 
-def getUserDateTime(dt = None, rollover = False, topString = "Input your Timestamp", bottomString = "Press Enter when done"):
+def getUserDateTime(start = None, rollover = False, topString = "Input your Timestamp", bottomString = "Press Enter when done"):
     try:
         scr = _startWindow()
         d = runDateTime(scr, rollover, topString, bottomString, start)
