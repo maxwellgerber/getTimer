@@ -9,7 +9,7 @@ from getTimer import VERSION
 here = os.path.abspath(os.path.dirname(__file__))
 
 # Get the long description from the README file
-with open(os.path.join(here, 'README.rst'), 'rU') as f:
+with open(os.path.join(here, 'README.md'), 'rU') as f:
     long_description = f.read()
 
 required = [

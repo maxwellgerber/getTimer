@@ -8,6 +8,7 @@ from .getTimerDateTime import runDateTime
 
 __all__ = ['getUserDate', 'getUserTime', 'getUserDateTime']
 
+
 def _startWindow():
     stdscr = curses.initscr()
     curses.noecho()
@@ -16,6 +17,7 @@ def _startWindow():
     curses.curs_set(0)
     return stdscr
 
+
 def _stopWindow(stdscr):
     stdscr.erase()
     stdscr.refresh()
@@ -23,7 +25,8 @@ def _stopWindow(stdscr):
     curses.echo()
     curses.curs_set(1)
     curses.nocbreak()
-    curses.endwin() 
+    curses.endwin()
+
 
 def _cleanup():
     curses.echo()
@@ -32,7 +35,10 @@ def _cleanup():
     curses.endwin()
     traceback.print_exc()
 
-def getUserDate(start = None, rollover = False, topString = "Input your Date", bottomString = "Press Enter when done"):
+
+def getUserDate(start=None, rollover=False,
+                topString="Input your Date",
+                bottomString="Press Enter when done"):
     try:
         scr = _startWindow()
         d = runDay(scr, rollover, topString, bottomString, start)
@@ -41,7 +47,10 @@ def getUserDate(start = None, rollover = False, topString = "Input your Date", b
     except:
         _cleanup()
 
-def getUserTime(start = None, rollover = False, topString = "Input your Time", bottomString = "Press Enter when done"):
+
+def getUserTime(start=None, rollover=False,
+                topString="Input your Time",
+                bottomString="Press Enter when done"):
     try:
         scr = _startWindow()
         d = runTime(scr, rollover, topString, bottomString, start)
@@ -50,7 +59,10 @@ def getUserTime(start = None, rollover = False, topString = "Input your Time", b
     except:
         _cleanup()
 
-def getUserDateTime(start = None, rollover = False, topString = "Input your Timestamp", bottomString = "Press Enter when done"):
+
+def getUserDateTime(start=None, rollover=False,
+                    topString="Input your Timestamp",
+                    bottomString="Press Enter when done"):
     try:
         scr = _startWindow()
         d = runDateTime(scr, rollover, topString, bottomString, start)

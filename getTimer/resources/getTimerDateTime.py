@@ -4,10 +4,11 @@ import datetime
 from .getTimerDate import *
 from .getTimerTime import *
 
+
 def displayDateTime(scr, day, time, cursor, topString, bottomString):
     string = day.isoformat() + " " + time.isoformat()
-    max_y , max_x = scr.getmaxyx()
-    y =  int(max_y/2)
+    max_y, max_x = scr.getmaxyx()
+    y = int(max_y/2)
     x = int(max_x/2) - 9
     scr.addstr(y - 2, x - int(len(topString)/2) + 9, topString)
     scr.addstr(y, x, string[0:cursor])
@@ -16,18 +17,22 @@ def displayDateTime(scr, day, time, cursor, topString, bottomString):
     scr.addstr(y + 2, x - int(len(bottomString)/2) + 9, bottomString)
     scr.refresh()
 
-def runDateTime(scr, rollover, topString, bottomString, dt = None):
+
+def runDateTime(scr, rollover, topString, bottomString, start=None):
     if(rollover):
-        if(dt == None):
+        if(start is None):
             d = date.today()
             t = time()
         else:
-            d = date(dt.year, dt.month, dt.day)
-            t = time(dt.hour, dt.minute, dt.second)
+            d = date(start.year, start.month, start.day)
+            t = time(start.hour, start.minute, start.second)
     else:
-        if(dt == None):
+        if(start is None):
             d = datetime.date.today()
             t = datetime.time()
+        else:
+            d = datetime.date(start.year, start.month, start.day)
+            t = datetime.time(start.hour, start.minute, start.second)
 
     c = curses.KEY_MAX
     cursor = 3
@@ -62,4 +67,5 @@ def runDateTime(scr, rollover, topString, bottomString, dt = None):
                         t = updateDigitTime(cursor - 11, t, i)
             except ValueError:
                 pass
-    return datetime.datetime(d.year, d.month, d.day, t.hour, t.minute, t.second)
+    return datetime.datetime(d.year, d.month, d.day,
+                             t.hour, t.minute, t.second)

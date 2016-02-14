@@ -1,6 +1,7 @@
 import curses
 import datetime
 
+
 class date(datetime.date):
 
     def _days_in_month(self, year, month):
@@ -49,60 +50,64 @@ class date(datetime.date):
             year -= 1
         return date(year, month, day)
 
+
 def alterDigitDay(cursor, day, amount):
     try:
         if(cursor == 0):
-            return day.replace(year = day.year + 1000 * amount)
+            return day.replace(year=day.year + 1000 * amount)
         elif(cursor == 1):
-            return day.replace(year = day.year + 100 * amount)
+            return day.replace(year=day.year + 100 * amount)
         elif(cursor == 2):
-            return day.replace(year = day.year + 10 * amount)
+            return day.replace(year=day.year + 10 * amount)
         elif(cursor == 3):
-            return day.replace(year = day.year + 1 * amount)
+            return day.replace(year=day.year + 1 * amount)
         elif(cursor == 5):
-            return day.replace(month = day.month + 10 * amount)
+            return day.replace(month=day.month + 10 * amount)
         elif(cursor == 6):
-            return day.replace(month = day.month + 1 * amount)
+            return day.replace(month=day.month + 1 * amount)
         elif(cursor == 8):
-            return day.replace(day = day.day + 10 * amount)
+            return day.replace(day=day.day + 10 * amount)
         elif(cursor == 9):
-            return day.replace(day = day.day + 1 * amount)
+            return day.replace(day=day.day + 1 * amount)
     except ValueError:
         return day
+
 
 def updateDigitDay(cursor, day, amount):
     try:
         if(cursor == 0):
             newyear = day.year % 1000 + 1000 * amount
-            return day.replace(year = newyear)
+            return day.replace(year=newyear)
         elif(cursor == 1):
-            newyear = day.year - day.year%1000 + day.year % 100  + 100 * amount
-            return day.replace(year = newyear)
+            newyear = day.year - day.year % 1000 + day.year % 100
+            newyear += 100 * amount
+            return day.replace(year=newyear)
         elif(cursor == 2):
             newyear = day.year - day.year % 100 + day.year % 10 + 10 * amount
-            return day.replace(year = newyear)
+            return day.replace(year=newyear)
         elif(cursor == 3):
             newyear = day.year - day.year % 10 + 1 * amount
-            return day.replace(year = newyear)
+            return day.replace(year=newyear)
         elif(cursor == 5):
             newmonth = day.month % 10 + 10 * amount
-            return day.replace(month = newmonth)
+            return day.replace(month=newmonth)
         elif(cursor == 6):
-            newmonth = day.month  - day.month % 10 + 1 * amount
-            return day.replace(month = newmonth)
+            newmonth = day.month - day.month % 10 + 1 * amount
+            return day.replace(month=newmonth)
         elif(cursor == 8):
             newday = day.day % 10 + 10 * amount
-            return day.replace(day = newday)
+            return day.replace(day=newday)
         elif(cursor == 9):
             newday = day.day - day.day % 10 + 1 * amount
-            return day.replace(day = newday)
+            return day.replace(day=newday)
     except ValueError:
         return day
 
+
 def displayDay(scr, day, cursor, topString, bottomString):
     string = day.isoformat()
-    max_y , max_x = scr.getmaxyx()
-    y =  int(max_y/2)
+    max_y, max_x = scr.getmaxyx()
+    y = int(max_y/2)
     x = int(max_x/2) - 5
     scr.addstr(y - 2, x - int(len(topString)/2) + 5, topString)
     scr.addstr(y, x, string[0:cursor])
@@ -111,16 +116,18 @@ def displayDay(scr, day, cursor, topString, bottomString):
     scr.addstr(y + 2, x - int(len(bottomString)/2) + 5, bottomString)
     scr.refresh()
 
-def runDay(scr, rollover, topString, bottomString, day = None):
 
+def runDay(scr, rollover, topString, bottomString, start=None):
     if(rollover):
-        if(day == None):
+        if(start is None):
             day = date.today()
         else:
-            day = date(day.year, day.month, day.day)
+            day = date(start.year, start.month, start.day)
     else:
-        if(day == None):
+        if(start is None):
             day = datetime.date.today()
+        else:
+            day = datetime.date(start.year, start.month, start.day)
 
     c = curses.KEY_MAX
     cursor = 3
