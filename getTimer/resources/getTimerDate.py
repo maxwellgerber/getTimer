@@ -146,4 +146,4 @@ def runDay(scr, rollover, topString, bottomString, day = None):
                     day = updateDigitDay(cursor, day, i)
             except ValueError:
                 pass
-    return day
+    return datetime.date(day.year, day.month, day.day)

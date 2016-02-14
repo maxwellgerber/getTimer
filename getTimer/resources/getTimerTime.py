@@ -115,4 +115,4 @@ def runTime(scr, rollover, topString, bottomString, t = None):
                     t = updateDigitTime(cursor, t, i)
             except ValueError:
                 pass
-    return t
+    return datetime.time(t.hour, t.minute, t.second)
