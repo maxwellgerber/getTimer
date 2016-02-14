@@ -38,8 +38,9 @@ The module currently contains three functions:
   * returns a python datetime.datetime object containing the user's input  
   * topString and bottomString controll text displayed to user  
   * rollover controlls behavior of widget
-  * start must be a datetime.datetime object. Defaults to datetime.datetime.now()
+  * start must be a datetime.datetime object. Defaults to datetime.datetime.now()   
 #### Todo
+- [ ] Nicer gifs/documentation
 - [ ] 12 hour AM/PM timestamp
 - [ ] verbose option (e.g. print month names instead of int)
 - [ ] Integration testing?
