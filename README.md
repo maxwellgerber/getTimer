@@ -39,6 +39,7 @@ The module currently contains three functions:
   * topString and bottomString controll text displayed to user  
   * rollover controlls behavior of widget
   * start must be a datetime.datetime object. Defaults to datetime.datetime.now()   
+ 
 #### Todo
 - [ ] Nicer gifs/documentation
 - [ ] 12 hour AM/PM timestamp
